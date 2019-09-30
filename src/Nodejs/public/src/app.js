@@ -13,10 +13,13 @@ function myController($scope, $http) {
     });
   }
   $scope.TenXe = '';
+  $scope.tenxe= 'xeA';
   $scope.getGiaXe = function() {
     $http.get('/api/getGiaXe/' + $scope.tenxe).then(function(result) {
       $scope.TenXe = result.data;
     });
   }
+
+ 
 }
 

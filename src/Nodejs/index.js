@@ -6,18 +6,19 @@ const app = express();
 const db = require('./db');
 
 
+// Này là test nên cứ để đi đừng xóa
 
-app.get('/getXe/:tenxe', (req, res)=>{
-    const nameXe = req.params.tenxe
-    var query = {name:nameXe}
-    db.getDB().collection("XeMay").find(query).toArray((err,result)=>{
-        if(err) throw err;
-        else {
-            console.log(result[0].name);
-            res.json(result);
-        }
-    })
-})
+// app.get('/getXe/:tenxe', (req, res)=>{
+//     const nameXe = req.params.tenxe
+//     var query = {name:nameXe}
+//     db.getDB().collection("XeMay").find(query).toArray((err,result)=>{
+//         if(err) throw err;
+//         else {
+//             console.log(result[0].name);
+//             res.json(result);
+//         }
+//     })
+// })
 
 
 
@@ -44,15 +45,16 @@ app.get('/home', function(request, response){
       response.send('User not found!!!')
   });
 
-  app.get('/api/getGiaXe/:tenxe', function(request, response){
-    var ten = request.params.tenxe;
+  app.get('/api/getGiaXe/:tenxe', function(req, res){
+    var ten = req.params.tenxe;
     var query = {name:ten}
     db.getDB().collection("XeMay").find(query).toArray((err,result)=>{
         if(err) throw err;
         else {
             console.log(result[0].cost);
-
-            //response.send(result[0].cost);
+            var data = (result[0].cost).toString();
+            console.log(data);
+            res.status(200).send(data);
         }
     })
   });
