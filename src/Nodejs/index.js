@@ -51,9 +51,7 @@ app.get('/home', function(request, response){
     db.getDB().collection("XeMay").find(query).toArray((err,result)=>{
         if(err) throw err;
         else {
-            console.log(result[0].cost);
             var data = (result[0].cost).toString();
-            console.log(data);
             res.status(200).send(data);
         }
     })
@@ -67,7 +65,6 @@ db.connect((err)=>{
     else{
         app.listen(3000,()=>{
             console.log('connected database , app lissten to 3000');
-            
         })
     }
 })
