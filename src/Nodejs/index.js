@@ -57,6 +57,18 @@ app.get('/home', function(request, response){
     })
   });
 
+
+  //load list danh sách sản phẩm
+  app.get('/api/getList/SanPham',function(req,res){
+    db.getDB().collection("SanPham").find().toArray((err,result)=>{
+      if(err) throw err;
+      else {
+        console.log(result);
+        res.send(result);
+      }
+    })
+  })
+
 db.connect((err)=>{
     if(err){
         console.log("Khong ket noi duoc database");
