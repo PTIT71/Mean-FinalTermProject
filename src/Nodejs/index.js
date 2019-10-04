@@ -59,6 +59,7 @@ app.get('/home', function(request, response){
 
 
   //load list danh sách sản phẩm
+  //1001
   app.get('/api/getList/SanPham',function(req,res){
     db.getDB().collection("SanPham").find().toArray((err,result)=>{
       if(err) throw err;
