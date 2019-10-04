@@ -1,2 +1,2 @@
 # Mean-FinalTermProject
-Do an cuoi ky mon CNMPM
+Do an cuoi ky mon CNMPM. Test Chat Bot
