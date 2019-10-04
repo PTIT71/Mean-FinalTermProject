@@ -57,6 +57,7 @@ app.get('/api/getGiaXe/:tenxe', function(req, res) {
 });
 
 
+<<<<<<< HEAD
 //load list danh sách sản phẩm
 app.get('/api/getList/SanPham', function(req, res) {
     db.getDB().collection("SanPham").find().toArray((err, result) => {
@@ -65,6 +66,17 @@ app.get('/api/getList/SanPham', function(req, res) {
             console.log(result);
             res.send(result);
         }
+=======
+  //load list danh sách sản phẩm
+  //1001
+  app.get('/api/getList/SanPham',function(req,res){
+    db.getDB().collection("SanPham").find().toArray((err,result)=>{
+      if(err) throw err;
+      else {
+        console.log(result);
+        res.send(result);
+      }
+>>>>>>> 3003deb78c29e446d3324b5220d7b3a7dc7914fb
     })
 })
 
