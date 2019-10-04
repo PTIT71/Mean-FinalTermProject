@@ -50,15 +50,9 @@ app.get('/', function(req, res) {
 });
 
 //load 1 trang có sẳn 
-<<<<<<< HEAD
-app.get('/home', function(request, response){
-    response.redirect('../Angulars/src/view/user/index.html');
-  });
-=======
 app.get('/home', function(request, response) {
     response.redirect('./src/view/user/index.html');
 });
->>>>>>> cf92032cd05ec7e776fbf093fb53ae06ceb2061a
 
 
 app.get('/api/getName/:userId', function(request, response) {
@@ -83,16 +77,6 @@ app.get('/api/getGiaXe/:tenxe', function(req, res) {
 });
 
 
-<<<<<<< HEAD
-//load list danh sách sản phẩm
-app.get('/api/getList/SanPham', function(req, res) {
-    db.getDB().collection("SanPham").find().toArray((err, result) => {
-        if (err) throw err;
-        else {
-            console.log(result);
-            res.send(result);
-        }
-=======
   //load list danh sách sản phẩm
   //1001
   app.get('/api/getList/SanPham',function(req,res){
@@ -102,11 +86,9 @@ app.get('/api/getList/SanPham', function(req, res) {
         console.log(result);
         res.send(result);
       }
->>>>>>> 3003deb78c29e446d3324b5220d7b3a7dc7914fb
     })
 })
 
-<<<<<<< HEAD
     //load list danh sách tin tuc
   //1002
   app.get('/api/getList/TinTuc',function(req,res){
@@ -134,10 +116,6 @@ app.get('/api/getList/SanPham', function(req, res) {
 
 db.connect((err)=>{
     if(err){
-=======
-db.connect((err) => {
-    if (err) {
->>>>>>> cf92032cd05ec7e776fbf093fb53ae06ceb2061a
         console.log("Khong ket noi duoc database");
         process.exit();
     } else {
