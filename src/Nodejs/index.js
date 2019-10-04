@@ -2,9 +2,12 @@
 var path = require('path');
 var express = require('express');
 var serveStatic = require('serve-static');
+var bodyParser = require("body-parser");
 const app = express();
 const db = require('./db');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Này là test nên cứ để đi đừng xóa
 
@@ -19,7 +22,24 @@ const db = require('./db');
 //         }
 //     })
 // })
+//===================================================================
+//Khu vực code thêm dữ liệu "Cấm hỏi và đụng vô"
 
+//Thêm Sản phâm :
+app.post('/api/add/SanPham',function(req,res){
+  var name =req.body.name;
+  var cost =req.body.cost;
+  var idGear = req.body.idGear;
+  var idKind = req.body.idKind;
+  var count = req.body.count;
+  var image = req.body.image;
+  var myobj = {name: name, cost: cost , idKind: idKind ,idGear:idGear, count:count, image:image};
+  db.getDB().collection("SanPham").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    console.log(res);
+  });
+});
 
 
 //====================================================================
@@ -32,7 +52,7 @@ app.get('/', function(req, res) {
 
 //load 1 trang có sẳn 
 app.get('/home', function(request, response){
-    response.redirect('./src/index.html');
+    response.redirect('../Angulars/src/view/user/index.html');
   });
 
 
@@ -69,6 +89,31 @@ app.get('/home', function(request, response){
       }
     })
   })
+
+    //load list danh sách tin tuc
+  //1002
+  app.get('/api/getList/TinTuc',function(req,res){
+    db.getDB().collection("TinTuc").find().toArray((err,result)=>{
+      if(err) throw err;
+      else {
+        console.log(result);
+        res.send(result);
+      }
+    })
+  })
+
+    //load list danh sách feedback
+  //1003
+  app.get('/api/getList/Feedback',function(req,res){
+    db.getDB().collection("SanPham").find().toArray((err,result)=>{
+      if(err) throw err;
+      else {
+        console.log(result);
+        res.send(result);
+      }
+    })
+  })
+
 
 db.connect((err)=>{
     if(err){
