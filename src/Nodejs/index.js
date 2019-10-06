@@ -25,19 +25,19 @@ app.use(bodyParser.json());
 //Khu vực code thêm dữ liệu "Cấm hỏi và đụng vô"
 
 //Thêm Sản phâm :
-app.post('/api/add/SanPham',function(req,res){
-  var name =req.body.name;
-  var cost =req.body.cost;
-  var idGear = req.body.idGear;
-  var idKind = req.body.idKind;
-  var count = req.body.count;
-  var image = req.body.image;
-  var myobj = {name: name, cost: cost , idKind: idKind ,idGear:idGear, count:count, image:image};
-  db.getDB().collection("SanPham").insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    console.log(res);
-  });
+app.post('/api/add/SanPham', function(req, res) {
+    var name = req.body.name;
+    var cost = req.body.cost;
+    var idGear = req.body.idGear;
+    var idKind = req.body.idKind;
+    var count = req.body.count;
+    var image = req.body.image;
+    var myobj = { name: name, cost: cost, idKind: idKind, idGear: idGear, count: count, image: image };
+    db.getDB().collection("SanPham").insertOne(myobj, function(err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+        console.log(res);
+    });
 });
 
 
@@ -53,7 +53,6 @@ app.get('/', function(req, res) {
 app.get('/home', function(request, response) {
     response.redirect('./src/view/user/index.html');
 });
-
 
 app.get('/api/getName/:userId', function(request, response) {
     var userId = request.params.userId;
@@ -77,45 +76,45 @@ app.get('/api/getGiaXe/:tenxe', function(req, res) {
 });
 
 
-  //load list danh sách sản phẩm
-  //1001
-  app.get('/api/getList/SanPham',function(req,res){
-    db.getDB().collection("SanPham").find().toArray((err,result)=>{
-      if(err) throw err;
-      else {
-        console.log(result);
-        res.send(result);
-      }
+//load list danh sách sản phẩm
+//1001
+app.get('/api/getList/SanPham', function(req, res) {
+    db.getDB().collection("SanPham").find().toArray((err, result) => {
+        if (err) throw err;
+        else {
+            console.log(result);
+            res.send(result);
+        }
     })
 })
 
-    //load list danh sách tin tuc
-  //1002
-  app.get('/api/getList/TinTuc',function(req,res){
-    db.getDB().collection("TinTuc").find().toArray((err,result)=>{
-      if(err) throw err;
-      else {
-        console.log(result);
-        res.send(result);
-      }
+//load list danh sách tin tuc
+//1002
+app.get('/api/getList/TinTuc', function(req, res) {
+    db.getDB().collection("TinTuc").find().toArray((err, result) => {
+        if (err) throw err;
+        else {
+            console.log(result);
+            res.send(result);
+        }
     })
-  })
+})
 
-    //load list danh sách feedback
-  //1003
-  app.get('/api/getList/Feedback',function(req,res){
-    db.getDB().collection("SanPham").find().toArray((err,result)=>{
-      if(err) throw err;
-      else {
-        console.log(result);
-        res.send(result);
-      }
+//load list danh sách feedback
+//1003
+app.get('/api/getList/Feedback', function(req, res) {
+    db.getDB().collection("SanPham").find().toArray((err, result) => {
+        if (err) throw err;
+        else {
+            console.log(result);
+            res.send(result);
+        }
     })
-  })
+})
 
 
-db.connect((err)=>{
-    if(err){
+db.connect((err) => {
+    if (err) {
         console.log("Khong ket noi duoc database");
         process.exit();
     } else {

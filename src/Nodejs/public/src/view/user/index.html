@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
 <head>
     <title>Website vivuxemay</title>
     <!--meta tags -->
@@ -28,10 +27,6 @@
 </head>
 
 <body>
-    <div ng-app="myApp" ng-controller="myController">
-        {{listData}}
-
-    </div>
     <div class="container-fluid ">
         <div class="hedder-up row">
             <div class="col-lg-3 col-md-3 logo-head">
@@ -174,63 +169,17 @@
                 </div>
             </nav>
         </div>
-
-        <div class="row banner-below-w3l">
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
+        <!--Danh sách các sản phẩm-->
+        <div class="row banner-below-w3l" ng-app="myApp" ng-controller="myController">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item" ng-repeat="x in listData">
                 <div class="item-hovered">
-                    <a href="ChiTietSP.jsp"><img class="img-hovered" src="../../images/xm1.jpg"></a>
+                    <a href="ChiTietSP.html?product={{x._id}}"><img class="img-hovered" src="../../images{{x.image}}"></a>
                     <div class="more kc">
                         <p class="name" style="padding-top: 20px;">
-                            Xe Yamaha
+                            {{x.name}}
                         </p>
-                        <p class="price" style="padding-top: 20px;"><b>20000 VND</b></p>
-                        <a class="btn" style="padding-top: 20px;" href="ChiTietSP/TSKT?maTSKT=${sp.maTSKT}">
-                            <img style="width: 80%;" src="../../images/btn-more.png" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                <div class="item-hovered">
-                    <a href="ChiTietSP.jsp"><img class="img-hovered" src="../../images/xm1.jpg"></a>
-                    <div class="more kc">
-                        <p class="name" style="padding-top: 20px;">
-                            Xe Yamaha
-                        </p>
-                        <p class="price" style="padding-top: 20px;"><b>20000 VND</b></p>
-                        <a class="btn" style="padding-top: 20px;" href="ChiTietSP/TSKT?maTSKT=${sp.maTSKT}">
-                            <img style="width: 80%;" src="../../images/btn-more.png" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                <div class="item-hovered">
-                    <a href="ChiTietSP.jsp"><img class="img-hovered" src="../../images/xm1.jpg"></a>
-                    <div class="more kc">
-                        <p class="name" style="padding-top: 20px;">
-                            Xe Yamaha
-                        </p>
-                        <p class="price" style="padding-top: 20px;"><b>20000 VND</b></p>
-                        <a class="btn" style="padding-top: 20px;" href="ChiTietSP/TSKT?maTSKT=${sp.maTSKT}">
-                            <img style="width: 80%;" src="../../images/btn-more.png" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                <div class="item-hovered">
-                    <a href="ChiTietSP.jsp"><img class="img-hovered" src="../../images/xm1.jpg"></a>
-                    <div class="more kc">
-                        <p class="name" style="padding-top: 20px;">
-                            Xe Yamaha
-                        </p>
-                        <p class="price" style="padding-top: 20px;"><b>20000 VND</b></p>
-                        <a class="btn" style="padding-top: 20px;" href="ChiTietSP/TSKT?maTSKT=${sp.maTSKT}">
+                        <p class="price" style="padding-top: 20px;"><b>{{x.cost}} VND</b></p>
+                        <a class="btn" style="padding-top: 20px;" href="ChiTietSP.html?product={{x._id}}">
                             <img style="width: 80%;" src="../../images/btn-more.png" alt="">
                         </a>
                     </div>
