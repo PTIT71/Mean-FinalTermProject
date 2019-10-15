@@ -4,26 +4,44 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
+var session = require('express-session')
+var Passport = require('./auth')
 var sanpham = require('./routes/sanpham');
-
+var user = require('./routes/user');
+var login = require('./routes/login');
+var tintuc = require('./routes/tintuc')
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+// passparse
+
+
+app.use(Passport.initialize())
+app.use(Passport.session())
+app.use(session({
+    secret: 'mesecret',
+    cookie:{
+        maxAge : 1000*60*5
+    },
+    resave: false,
+    saveUninitialized: true
+}));
+
 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended :true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/sanpham', sanpham);
 
+app.use('/sanpham', sanpham);
+app.use('/user', user);
+app.use('/login',login);
+app.use('/tintuc',tintuc);
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
