@@ -18,16 +18,7 @@ app.set('view engine', 'jade');
 // passparse
 
 
-app.use(Passport.initialize())
-app.use(Passport.session())
-app.use(session({
-    secret: 'mesecret',
-    cookie:{
-        maxAge : 1000*60*5
-    },
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 
 app.use(favicon());
@@ -37,12 +28,29 @@ app.use(bodyParser.urlencoded({ extended :true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'mesecret',
+    cookie:{
+        maxAge : 1000*60*5
+    },
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(Passport.initialize())
+app.use(Passport.session())
 
-app.use('/sanpham', sanpham);
-app.use('/user', user);
+var isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login');
+}
+
+app.use('/sanpham',isAuthenticated, sanpham);
+app.use('/user',user);
 app.use('/login',login);
 app.use('/tintuc',tintuc);
-/// catch 404 and forwarding to error handler
+
+
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

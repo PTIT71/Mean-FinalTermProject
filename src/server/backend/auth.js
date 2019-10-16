@@ -9,15 +9,13 @@ Passport.use(new LocalStrategy({
   },
     function(name, pass, done) {
       var query = {name:name}
-      console.log(name);
       
       uModel.findOne(query, function (err, user) {
-        console.log(user);
         if (err) { return done(err); }
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
-        if (user.pass !== md5(pass)) {
+        if (user.pass !== pass) {
           return done(null, false, { message: 'Incorrect password.' });
         }
         return done(null, user);
@@ -25,19 +23,22 @@ Passport.use(new LocalStrategy({
     }
   ));
   
-  Passport.serializeUser((user,done)=>{
-    done(null,user)
-  })
+  
   
   Passport.deserializeUser((name,done)=>{
     uModel.findOne({ name: name }, function (err, user) {
-      if (err) { return done(err); }
+      if (err) { 
+        return done(err); }
       if (user) {
         return done(null, user);
       }else{
         return done(null,false);
       }
     });
+  })
+
+  Passport.serializeUser((user,done)=>{
+    done(null,user.name)
   })
 
 module.exports= Passport
