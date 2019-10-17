@@ -46,9 +46,9 @@ var isAuthenticated = function (req, res, next) {
 }
 
 app.use('/sanpham',isAuthenticated, sanpham);
-app.use('/user',user);
+app.use('/user',isAuthenticated,user);
 app.use('/login',login);
-app.use('/tintuc',tintuc);
+app.use('/tintuc',isAuthenticated,tintuc);
 
 
 app.use(function(req, res, next) {
