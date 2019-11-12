@@ -17,10 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 // passparse
 
-
-
-
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -49,6 +45,12 @@ app.use('/sanpham',isAuthenticated, sanpham);
 app.use('/user',isAuthenticated,user);
 app.use('/login',login);
 app.use('/tintuc',isAuthenticated,tintuc);
+
+app.get('/auth/google', Passport.authenticate('google', {scope: ['profile', 'email']}));
+
+app.get('/auth/google/callback', 
+Passport.authenticate('google', { successRedirect: '/sanpham',
+	                              failureRedirect: '/login' }));
 
 
 app.use(function(req, res, next) {

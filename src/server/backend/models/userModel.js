@@ -4,7 +4,12 @@ var Schema   = mongoose.Schema;
 var User = new Schema({
     "name" : String,
     "mail" : String,
-    "pass" : String  
+    "pass" : String,
+    "google": {
+        "id": String,
+        "token": String,
+        "name": String
+    }
 });
 
 
