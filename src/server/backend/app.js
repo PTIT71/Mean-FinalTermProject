@@ -45,11 +45,14 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/login');
 }
 
-app.use('/sanpham',isAuthenticated, sanpham);
-app.use('/user',isAuthenticated,user);
+// app.use('/sanpham',isAuthenticated, sanpham);
+// app.use('/user',isAuthenticated,user);
+// app.use('/login',login);
+// app.use('/tintuc',isAuthenticated,tintuc);
+app.use('/sanpham', sanpham);
+app.use('/user',user);
 app.use('/login',login);
-app.use('/tintuc',isAuthenticated,tintuc);
-
+app.use('/tintuc',tintuc);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
