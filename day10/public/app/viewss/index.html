@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Day10</title>
+    <!-- set base path for angular routing -->
+    <base href="/">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- JS -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+
+    <script src="modules/angular.min.js"></script>
+    <script src="modules/angular-route.min.js"></script>
+    <script src="modules/angular-animate.min.js"></script>
+
+
+    <script src="app/app.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/services/sanphamService.js"></script>
+    <script src="app/controllers/sanphamController.js"></script>
+</head>
+
+<body class="container" ng-app="routerApp" ng-controller="mainController as main">
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Vi du ve Angular Routing</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="/about"><i class="fa fa-shield"></i>About</a></li>
+                <li><a href="/contact"><i class="fa fa-comment"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="bigclass">
+            <h1>{{ main.bigMessage }}</h1>
+        </div>
+        <div class="content-views">
+            <div ng-view></div>
+        </div>
+    </main>
+</body>
+
+</html>
