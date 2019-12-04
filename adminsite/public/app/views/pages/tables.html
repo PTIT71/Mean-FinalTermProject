@@ -1,0 +1,70 @@
+<div class="container-fluid" ng-init="sanpham.getSanpham();">
+    {{sanpham.data}}
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên xe</th>
+                            <th>Số lượng</th>
+                            <th>Thêm</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên xe</th>
+                            <th>Số lượng</th>
+                            <th>Thêm</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr ng-repeat="sanpham in sanpham.data">
+                            <td>1</td>
+                            <td>{{ sanpham.name }}</td>
+                            <td>{{ sanpham.count }}</td>
+                            <td>
+                                <a href="#" class="btn btn-primary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                  <i class="fas fa-flag"></i>
+                                </span>
+                                    <span class="text">Thêm</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div ng-app="myApp" ng-controller="customersCtrl"></div>
+    <ul>
+        <li ng-repeat="x in myData">
+            {{ x.name }}
+        </li>
+    </ul>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function($scope, $http) {
+            $http.get("http://localhost:3000/sanpham").then(function(response) {
+                $scope.myData = response.data.records;
+            });
+        });
+    </script>
+</div>
+</div>
