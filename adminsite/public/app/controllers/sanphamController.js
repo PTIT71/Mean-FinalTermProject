@@ -5,7 +5,7 @@ angular.module('sanphamController', [])
             console.log('Get orders-----------------------');
             sanphamService.getSanpham().then(function (data) {
                 console.log(data.data);
-                app.data = data.data;
+                app.abc = data.data;
                 console.log('------------------');
             });
 
