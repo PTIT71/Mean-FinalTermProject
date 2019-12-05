@@ -7,38 +7,51 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
         </div>
+        <div width="25%">
+                <a href="/thongke" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                  <i class="fas fa-flag"></i>
+                </span>
+                    <span class="text">Thêm</span>
+                </a>
+        </div>
+        
         <div class="card-body">
             <div class="table-responsive">
+                    
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Mã</th>
                             <th>Tên xe</th>
+                            <th>Giá xe</th>
                             <th>Số lượng</th>
-                            <th>Thêm</th>
+                            <th>Xem</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
                     <tfoot>
-                        <tr>
-                            <th>Mã</th>
-                            <th>Tên xe</th>
-                            <th>Số lượng</th>
-                            <th>Thêm</th>
-                            <th>Xóa</th>
-                        </tr>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Tên xe</th>
+                                <th>Giá xe</th>
+                                <th>Số lượng</th>
+                                <th>Xem</th>
+                                <th>Xóa</th>
+                            </tr>
                     </tfoot>
                     <tbody>
                         <tr ng-repeat="sanpham in sanpham.data">
                             <td>1</td>
                             <td>{{ sanpham.name }}</td>
+                            <td>{{ sanpham.cost }}</td>
                             <td>{{ sanpham.count }}</td>
                             <td>
                                 <a href="#" class="btn btn-primary btn-icon-split">
                                     <span class="icon text-white-50">
                                   <i class="fas fa-flag"></i>
                                 </span>
-                                    <span class="text">Thêm</span>
+                                    <span class="text">Xem</span>
                                 </a>
                             </td>
                             <td>
